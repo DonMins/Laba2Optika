@@ -57,14 +57,13 @@ def my_ftt(func, a, b, N, hx, hu):
         sumf[i] *= hx
     return sumf
 
-def jordans():
+def jordans(M,hu):
     sumf = [0j] * M
     for i in range(M):
         u = -b + i * hu
-    return math.pi * numpy.exp(2*math.pi*x)
+        sumf[i]=math.pi * numpy.exp( 2 * math.pi * (-1)*abs(u))
+    return sumf
 
-def f_fourier(x):
-    return 2*math.pi *1j* math.exp(2*math.pi*x) * gaussian_beam(math.pi * x) * x * (2 * math.pi * math.pi * x * x - 3) / (2 * 1j)
 if __name__ == '__main__':
     a = 5
     N = 256
@@ -128,16 +127,16 @@ if __name__ == '__main__':
     pl.plot(x, amplitude(f(x)), label='Исходный')
     pl.plot(x1, amplitude( my_beam_f), label='Фурье встр.')
     # pl.plot(x2, amplitude(f(x)), label='Моё')
-    g = jordans(x)
-    # pl.plot(x, amplitude(g), label='Аналитика', color='c')
+
+    pl.plot(x2, amplitude(jordans(M,hu)), label='Аналитика', color='c')
     pl.grid()
     pl.legend()
     pl.subplot(133)
     pl.title('Фаза')
-    pl.plot(j, phase(f(x)), label='Исходный')
+    pl.plot(x, phase(f(x)), label='Исходный')
     pl.plot(x1, phase( my_beam_f), label='Фурье встр.')
     # pl.plot(x2, phase(f(x)), label='Моё')
-    pl.plot(x, phase(jordans(x)), label='Аналитика', color='c')
+    pl.plot(x2, phase(jordans(M,hu)), label='Аналитика', color='c')
     # pl.gca().set_ylim(-math.pi, math.pi)
     pl.grid()
     pl.legend()
