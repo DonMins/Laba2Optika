@@ -132,7 +132,6 @@ if __name__ == '__main__':
 
     # ЗАДАНИЕ № 6
     my_beam_f = finite_fourier_transform(f(x), N, M, hx, number_of_zeros)
-
     pl.subplot(131)
     pl.plot(x, f(x))
     pl.title("Исходный мой пучок")
